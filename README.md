@@ -1,4 +1,4 @@
-C-SQL-Conections
+C-Sharp-SQL-Conections
 ================
 
 Projeto Conection String Class C#
