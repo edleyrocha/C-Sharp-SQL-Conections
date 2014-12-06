@@ -177,12 +177,8 @@ namespace App_SQL_Conections
             richTextBox_Comentatatios.Clear();
             FU4_EnviarDadosConectionStringSQLServer();
             richTextBox_Comentatatios.AppendText("Status ---> " + (c.SQLServer_GetSqlConnectionSQLServer(true).State.ToString()) + ("\n"));
+            richTextBox_Comentatatios.AppendText("Using  ---> " + (c.SQLServer_GetSqlConnectionSQLServer(true).ToString()) + ("\n"));
             richTextBox_Comentatatios.AppendText("String  ---> " + (c.SQLServer_GetSqlConnectionSQLServer(true).ConnectionString.ToString()) + ("\n"));
-            
-            
-            //richTextBox_Comentatatios.AppendText("String:" + (c.StringBuilderSQL_pub.ToString()) + ("\r \n"));
-            //  richTextBox_Comentatatios.AppendText("Status:" + (c.SQLServer_Connection.State.ToString()) + ("\n"));
-            //MessageBox.Show(c.StringBuilderSQL_pub);
         }
 
         private void rb_Authentication_Windows_CheckedChanged(object sender, EventArgs e)

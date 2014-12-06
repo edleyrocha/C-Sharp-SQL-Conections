@@ -276,7 +276,7 @@
             this.buttonStatus.Name = "buttonStatus";
             this.buttonStatus.Size = new System.Drawing.Size(79, 23);
             this.buttonStatus.TabIndex = 7;
-            this.buttonStatus.Text = "Status Atual";
+            this.buttonStatus.Text = "Status";
             this.buttonStatus.UseVisualStyleBackColor = true;
             this.buttonStatus.Click += new System.EventHandler(this.buttonStatus_Click);
             // 
