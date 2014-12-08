@@ -1,6 +1,5 @@
 D:\Projetos\C-Sharp-SQL-Conections\App_SQL_Conections\bin\Debug\App_SQL_Conections.exe
 D:\Projetos\C-Sharp-SQL-Conections\App_SQL_Conections\bin\Debug\App_SQL_Conections.pdb
-D:\Projetos\C-Sharp-SQL-Conections\App_SQL_Conections\obj\Debug\App_SQL_Conections.csprojResolveAssemblyReference.cache
 D:\Projetos\C-Sharp-SQL-Conections\App_SQL_Conections\obj\Debug\App_SQL_Conections.frmSQL_ServerA.resources
 D:\Projetos\C-Sharp-SQL-Conections\App_SQL_Conections\obj\Debug\App_SQL_Conections.Properties.Resources.resources
 D:\Projetos\C-Sharp-SQL-Conections\App_SQL_Conections\obj\Debug\App_SQL_Conections.csproj.GenerateResource.Cache

@@ -6,41 +6,38 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 
+
+
 namespace App_SQL_Conections
 {
     public partial class frmSQL_ServerA : Form
     {
-        ConnectionDataBase c = new ConnectionDataBase();
-
-
-
-
+      
         /// <summary>
         /// Metodo Contrutor Form Principal
         /// </summary>
         public frmSQL_ServerA()
         {
             InitializeComponent();
-
-            FU1_Limpar_TextBOX();
-            FU3_AdicionarItens_comboBoxTimes();
+            FU1_Limpar_BOX();
             FU2_BotaoAuthentication_ON_OFF();
-
+            FU3_AdicionarItens_comboBoxTimes();
         }
 
         #region ---(Lista de FUNCORES)---
+     
+        
         /// <summary>
-        /// Limpar todoas os componentes
+        /// Limpar todos os componentes
         /// </summary>
-        private void FU1_Limpar_TextBOX()
+        private void FU1_Limpar_BOX()
         {
-            textBoxBanco.Clear();
-            textBoxSever.Clear();
-            textBoxUser.Clear();
-            textBoxPassword.Clear();
-            comboBoxTime.Items.Clear();
-            richTextBox_Comentatatios.Clear();
-
+            this.textBoxBanco.Clear();
+            this.textBoxSever.Clear();
+            this.textBoxUser.Clear();
+            this.textBoxPassword.Clear();
+            this.comboBoxTime.Items.Clear();
+            this.richTextBox_Comentatatios.Clear();
         }
 
         /// <summary>
@@ -51,7 +48,8 @@ namespace App_SQL_Conections
             /// ENABLE
             comboBoxTime.Enabled =! comboBoxTime.Enabled;
             labelTimeOut.Enabled =! labelTimeOut.Enabled;
-       
+            /// IF ON OFF
+            /// 
             if (btn__Authentication_ON_OFF.Text == ("OFF"))
             {
                 btn__Authentication_ON_OFF.Text = "ON";
@@ -79,16 +77,23 @@ namespace App_SQL_Conections
         /// </summary>
         private void FU4_MudarCharPasswordNormal()
         {
-            if (textBoxPassword.PasswordChar == ('*'))
+
+            if ((btnShow.Text == ("Show")) && (textBoxPassword.UseSystemPasswordChar == (true)))
             {
-                //textBoxPassword.PasswordChar = '\0';    //1 AS DUAS FORMA FUNCIONA
-                textBoxPassword.PasswordChar = ((Char)0); //2
+                btnShow.Text = "No Show";
+                textBoxPassword.UseSystemPasswordChar = false;
             }
-            else
+            else if ((btnShow.Text == ("No Show")) && (textBoxPassword.UseSystemPasswordChar == (false)))
             {
-                textBoxPassword.PasswordChar = '*';
+                btnShow.Text = "Show";
+                textBoxPassword.UseSystemPasswordChar = true;
+                
             }
         }
+
+        /// <summary>
+        /// Disable Enable componentes
+        /// </summary>
         private void FU5_EnableDisableComponentes()
         {
             labelUser.Enabled =! (labelUser.Enabled);
@@ -98,30 +103,30 @@ namespace App_SQL_Conections
             btnShow.Enabled = !(btnShow.Enabled);
          
         }
+
         /// <summary>
-        /// Enviar strigns dos campos para montar Conexao;
+        /// Enviar Strings dos campos para montar Conexao;
         /// </summary>
-        public void FU4_EnviarDadosConectionStringSQLServer()
+        public void FU6_Montar_StringBuilder_SQLConnection()
         {
-            
-            c.SQLServer_GetSqlConnectionSQLServer(false);
-            c.SQLServer_Endereco_Servidor = textBoxSever.Text; ///1
-            c.SQLServer_Nome_BancoDeDados = textBoxBanco.Text; ///2
+            ConnectionDataBase.SQLServer_1_StringBuilder = string.Empty;
+            ConnectionDataBase.SQLServer_2_EnderecoServidor = textBoxSever.Text; ///1
+            ConnectionDataBase.SQLServer_3_NomeBancoDeDados = textBoxBanco.Text; ///2
 
             if (rb_Authentication_SQL_Server.Checked)
             {
-                c.SQLServer_Tipo_Seguranca = (false); ///3
-                c.SQLServer_Usuario_Login = textBoxUser.Text; ///4
-                c.SQLServer_Senha_Login = textBoxPassword.Text; ///5
+                ConnectionDataBase.SQLServer_4_TipoSeguranca = (false); ///3
+                ConnectionDataBase.SQLServer_5_LoginUsuario = textBoxUser.Text; ///4
+                ConnectionDataBase.SQLServer_6_LoginSenha = textBoxPassword.Text; ///5
             }
             else if (rb_Authentication_Windows.Checked)
             {
-                c.SQLServer_Tipo_Seguranca = (true); ///3
+                ConnectionDataBase.SQLServer_4_TipoSeguranca = (true); ///3
             }
 
             if ((comboBoxTime.SelectedItem != null) && (comboBoxTime.Enabled != false))
             {
-                c.SQLServer_TimeOutConexao = (int.Parse(comboBoxTime.Text));///6
+                ConnectionDataBase.SQLServer_7_TimeOutConexao = (int.Parse(comboBoxTime.Text));///6
             }
         }
 
@@ -129,24 +134,24 @@ namespace App_SQL_Conections
         /// Abrir ou Fechar Banco de Dados Somente
         /// </summary>
         /// <param name="AbrirTrue_FechaFalse"></param>
-        private void FU5_AbrirFecharConexaoSQLServer(Boolean AbrirTrue_FechaFalse)
+        private void FU7_ConectarDesconectar(string ConectarDesconectar)
         {
             try
             {
-            
-               
-                switch (AbrirTrue_FechaFalse)
+                switch (ConectarDesconectar)
                 {
-                    case (true):
+                    case ("Conectar"):
                         {
-                           
-                          //  c.SQLServer_Connection.Open();
+       
+                            ConnectionDataBase.SQLServer_FU_Connection("Open");
+                            btnConectarDesconectar.Text = ("Desconectar");
                             break;
                         }
-                    case (false):
+                    case ("Desconectar"):
                         {
-                           
-                           // c.SQLServer_Connection.Close();
+
+                            ConnectionDataBase.SQLServer_FU_Connection("Close");
+                            btnConectarDesconectar.Text = ("Conectar");
                             break;
                         }
                     default:
@@ -161,9 +166,6 @@ namespace App_SQL_Conections
             }
         }
 
-      
-
-
         #endregion
 
 
@@ -174,40 +176,30 @@ namespace App_SQL_Conections
 
         private void buttonStatus_Click(object sender, EventArgs e)
         {
+            FU6_Montar_StringBuilder_SQLConnection();
             richTextBox_Comentatatios.Clear();
-            FU4_EnviarDadosConectionStringSQLServer();
-            richTextBox_Comentatatios.AppendText("Status ---> " + (c.SQLServer_GetSqlConnectionSQLServer(true).State.ToString()) + ("\n"));
-            richTextBox_Comentatatios.AppendText("Using  ---> " + (c.SQLServer_GetSqlConnectionSQLServer(true).ToString()) + ("\n"));
-            richTextBox_Comentatatios.AppendText("String  ---> " + (c.SQLServer_GetSqlConnectionSQLServer(true).ConnectionString.ToString()) + ("\n"));
-        }
+            richTextBox_Comentatatios.AppendText("StringBuilder ---> " + (ConnectionDataBase.SQLServer_1_StringBuilder) + ("\n"));
+            richTextBox_Comentatatios.AppendText("\r");
+            richTextBox_Comentatatios.AppendText("SQL_String   ---> " + (ConnectionDataBase.SQLServer_FU_Connection("Status").ConnectionString.ToString()) + ("\n"));
+            richTextBox_Comentatatios.AppendText("\r");
+            richTextBox_Comentatatios.AppendText("SQL_Status  ---> " + (ConnectionDataBase.SQLServer_FU_Connection("Status").State.ToString()) + ("\n"));
+         }
 
         private void rb_Authentication_Windows_CheckedChanged(object sender, EventArgs e)
         {
             FU5_EnableDisableComponentes();
         }
 
-        private void btnConectar_Click(object sender, EventArgs e)
-        {
-
-            //FU4_EnviarDadosConectionStringSQLServer();
-            //c.FU1_MontarRetornarConexaoSQLServer(); 
-            //FU5_AbrirFecharConexaoSQLServer(true);
-        }
-
-        private void btnDesconectar_Click(object sender, EventArgs e)
-        {
-            //FU4_EnviarDadosConectionStringSQLServer();
-            //FU5_AbrirFecharConexaoSQLServer(false);
-        }
-
         private void btnShow_Click(object sender, EventArgs e)
         {
-
             FU4_MudarCharPasswordNormal();
         }
 
-     
- 
+        private void btnConectarDesconectar_Click(object sender, EventArgs e)
+        {
+            FU6_Montar_StringBuilder_SQLConnection();
+            FU7_ConectarDesconectar(btnConectarDesconectar.Text.ToString());
+        }
 
     }
 }

@@ -44,7 +44,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.comboBoxTime = new System.Windows.Forms.ComboBox();
             this.btnSalvar = new System.Windows.Forms.Button();
-            this.btnConectar = new System.Windows.Forms.Button();
+            this.btnConectarDesconectar = new System.Windows.Forms.Button();
             this.btn__Authentication_ON_OFF = new System.Windows.Forms.Button();
             this.rb_Authentication_SQL_Server = new System.Windows.Forms.RadioButton();
             this.rb_Authentication_Windows = new System.Windows.Forms.RadioButton();
@@ -58,10 +58,12 @@
             // 
             // groupBox_SQL
             // 
+            this.groupBox_SQL.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.groupBox_SQL.Controls.Add(this.panel3);
             this.groupBox_SQL.Controls.Add(this.panel2);
             this.groupBox_SQL.Controls.Add(this.panel1);
-            this.groupBox_SQL.Location = new System.Drawing.Point(13, 13);
+            this.groupBox_SQL.Location = new System.Drawing.Point(12, 12);
             this.groupBox_SQL.Name = "groupBox_SQL";
             this.groupBox_SQL.Size = new System.Drawing.Size(306, 374);
             this.groupBox_SQL.TabIndex = 0;
@@ -70,6 +72,8 @@
             // 
             // panel3
             // 
+            this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel3.Controls.Add(this.richTextBox_Comentatatios);
             this.panel3.Location = new System.Drawing.Point(6, 250);
@@ -79,6 +83,8 @@
             // 
             // richTextBox_Comentatatios
             // 
+            this.richTextBox_Comentatatios.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.richTextBox_Comentatatios.Location = new System.Drawing.Point(8, 9);
             this.richTextBox_Comentatatios.Name = "richTextBox_Comentatatios";
             this.richTextBox_Comentatatios.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
@@ -119,7 +125,8 @@
             this.textBoxPassword.Name = "textBoxPassword";
             this.textBoxPassword.Size = new System.Drawing.Size(112, 20);
             this.textBoxPassword.TabIndex = 3;
-            this.textBoxPassword.Text = "123456";
+            this.textBoxPassword.Text = "a";
+            this.textBoxPassword.UseSystemPasswordChar = true;
             // 
             // textBoxSever
             // 
@@ -127,7 +134,7 @@
             this.textBoxSever.Name = "textBoxSever";
             this.textBoxSever.Size = new System.Drawing.Size(181, 20);
             this.textBoxSever.TabIndex = 0;
-            this.textBoxSever.Text = "192.168.1.1";
+            this.textBoxSever.Text = "192.168.11.200";
             // 
             // textBoxBanco
             // 
@@ -194,7 +201,7 @@
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.comboBoxTime);
             this.panel1.Controls.Add(this.btnSalvar);
-            this.panel1.Controls.Add(this.btnConectar);
+            this.panel1.Controls.Add(this.btnConectarDesconectar);
             this.panel1.Controls.Add(this.btn__Authentication_ON_OFF);
             this.panel1.Controls.Add(this.rb_Authentication_SQL_Server);
             this.panel1.Controls.Add(this.rb_Authentication_Windows);
@@ -222,17 +229,16 @@
             this.btnSalvar.TabIndex = 9;
             this.btnSalvar.Text = "Salvar";
             this.btnSalvar.UseVisualStyleBackColor = true;
-            this.btnSalvar.Click += new System.EventHandler(this.btnDesconectar_Click);
             // 
-            // btnConectar
+            // btnConectarDesconectar
             // 
-            this.btnConectar.Location = new System.Drawing.Point(206, 39);
-            this.btnConectar.Name = "btnConectar";
-            this.btnConectar.Size = new System.Drawing.Size(79, 23);
-            this.btnConectar.TabIndex = 8;
-            this.btnConectar.Text = "Conectar";
-            this.btnConectar.UseVisualStyleBackColor = true;
-            this.btnConectar.Click += new System.EventHandler(this.btnConectar_Click);
+            this.btnConectarDesconectar.Location = new System.Drawing.Point(206, 39);
+            this.btnConectarDesconectar.Name = "btnConectarDesconectar";
+            this.btnConectarDesconectar.Size = new System.Drawing.Size(79, 23);
+            this.btnConectarDesconectar.TabIndex = 8;
+            this.btnConectarDesconectar.Text = "Conectar";
+            this.btnConectarDesconectar.UseVisualStyleBackColor = true;
+            this.btnConectarDesconectar.Click += new System.EventHandler(this.btnConectarDesconectar_Click);
             // 
             // btn__Authentication_ON_OFF
             // 
@@ -295,7 +301,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(332, 392);
+            this.ClientSize = new System.Drawing.Size(334, 392);
             this.Controls.Add(this.groupBox_SQL);
             this.MaximizeBox = false;
             this.Name = "frmSQL_ServerA";
@@ -316,7 +322,7 @@
         private System.Windows.Forms.GroupBox groupBox_SQL;
         private System.Windows.Forms.RichTextBox richTextBox_Comentatatios;
         private System.Windows.Forms.Button btnSalvar;
-        private System.Windows.Forms.Button btnConectar;
+        private System.Windows.Forms.Button btnConectarDesconectar;
         private System.Windows.Forms.Label labelPassword;
         private System.Windows.Forms.Label labelBanco;
         private System.Windows.Forms.Label labelUser;

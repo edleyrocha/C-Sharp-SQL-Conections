@@ -19,25 +19,27 @@ namespace App_SQL_Conections
     {
 
        #region ---(..........Metodo Contrutor..........)---
+     
         /// <summary>
         /// Metodo Contrutor Conexao SQL Base
         /// </summary>
-       public ConnectionDataBase()
+        public ConnectionDataBase()
         {
-           
-         }
+
+        }
         ///
        #endregion
 
        #region ---(..........MSQL_StringBuilde..........)---
-       /// <summary>
+
+       private static SqlConnectionStringBuilder stringBuilderSQL = new SqlConnectionStringBuilder();
+      
+        /// <summary>
        /// Formador de Strings SQL --- GET Somente String e SET somente a String
        /// </summary>
-
-       private SqlConnectionStringBuilder stringBuilderSQL = new SqlConnectionStringBuilder();
-       private string SQLServer_StringBuilder ///1
+       public static string SQLServer_1_StringBuilder ///1
        {
-           get { return stringBuilderSQL.ConnectionString.ToString(); }
+           get { return stringBuilderSQL.ConnectionString; }
            set { stringBuilderSQL.ConnectionString = value; }
        }
 
@@ -46,7 +48,7 @@ namespace App_SQL_Conections
        ///  O nome ou endereço de rede de instância de SQL Server a qual se conectar.
        ///  O número da porta pode ser especificado após o nome do servidor: (server=tcp:servername, portnumber)
        /// </summary>
-       public string SQLServer_Endereco_Servidor ///2
+       public static string SQLServer_2_EnderecoServidor ///2
        {
            private get { return stringBuilderSQL.DataSource; }
            set { stringBuilderSQL.DataSource = value; }
@@ -56,7 +58,7 @@ namespace App_SQL_Conections
        ///  STRING - Nome Banco de Dados
        ///  O nome de base de dados pode ser caracteres 128 ou menos.
        /// </summary>
-       public string SQLServer_Nome_BancoDeDados ///3
+       public static string SQLServer_3_NomeBancoDeDados ///3
        {
            private get { return stringBuilderSQL.InitialCatalog; }
            set { stringBuilderSQL.InitialCatalog = value; }
@@ -68,8 +70,7 @@ namespace App_SQL_Conections
        ///  Quando false, a identificação de usuário e a senha são especificadas na conexão.    (false --> SQL Server)
        ///  Quando true, as credenciais atual da conta do Windows é usado para autenticação.    (true  --> Windows)
        /// </summary>
-
-       public bool SQLServer_Tipo_Seguranca ///4
+       public static bool SQLServer_4_TipoSeguranca ///4
        {
            private get { return stringBuilderSQL.IntegratedSecurity; }
            set { stringBuilderSQL.IntegratedSecurity = value; }
@@ -80,7 +81,7 @@ namespace App_SQL_Conections
        ///  A conta de logon de SQL Server .
        ///  O identificação de usuário deve ser 128 caracteres ou menos.
        /// </summary>
-       public string SQLServer_Usuario_Login   ///5
+       public static string SQLServer_5_LoginUsuario   ///5
        {
            private get { return stringBuilderSQL.UserID; }
            set { stringBuilderSQL.UserID = value; }
@@ -91,7 +92,7 @@ namespace App_SQL_Conections
        ///  A senha da conta de abertura de SQL Server. 
        ///  A senha deve ser 128 caracteres ou menos.
        /// </summary>
-       public string SQLServer_Senha_Login ///6
+       public static string SQLServer_6_LoginSenha ///6
        {
            private get { return stringBuilderSQL.Password; }
            set { stringBuilderSQL.Password = value; }
@@ -102,7 +103,7 @@ namespace App_SQL_Conections
        ///  A senha da conta de abertura de SQL Server. 
        ///  A senha deve ser 128 caracteres ou menos.
        /// </summary>
-       public int SQLServer_TimeOutConexao ///7
+       public static int SQLServer_7_TimeOutConexao ///7
        {
            private get { return stringBuilderSQL.ConnectTimeout; }
            set { stringBuilderSQL.ConnectTimeout = value; }
@@ -111,11 +112,12 @@ namespace App_SQL_Conections
         #endregion 
 
        #region ---(..........SQL_Connection..........)---
+
+       private static SqlConnection sqlServer_Connection = new SqlConnection();
        /// <summary>
-       /// STRING - SQL Conexao para Banco de Dados
+       /// SqlConnection - SQL Conexao para Banco de Dados
        /// </summary>
-       private SqlConnection sqlServer_Connection = new SqlConnection();
-       private SqlConnection SQLServer_Connection
+       private static SqlConnection SQLServer_8_Connection
        {
             get { return sqlServer_Connection; }
             set { sqlServer_Connection = value; }
@@ -126,28 +128,34 @@ namespace App_SQL_Conections
        #region ---(..........Lista de Funçoes..........)---
 
        /// <summary>
-        /// Retorna Conexao SQL Server com Strings pronto para conectar
-        /// </summary>
-        /// <returns></returns>
-       public SqlConnection SQLServer_GetSqlConnectionSQLServer( Boolean GetTrue_CleanFalse)
+       /// Funcao para Abrir Fechar e Outros
+       /// </summary>
+       /// <param name="Open_Close_Status"></param>
+       /// <returns></returns>
+       public static SqlConnection SQLServer_FU_Connection(String Open_Close_OUTROS)
        {
-           switch (GetTrue_CleanFalse)
+           switch (Open_Close_OUTROS)
            {
-               case (true):
-                   {
-                       SQLServer_Connection.ConnectionString = stringBuilderSQL.ConnectionString;
-                       return SQLServer_Connection;
-                   }
-               default:
-                   {
-                       SQLServer_StringBuilder = String.Empty;
-                       return SQLServer_Connection;
-                   }
-
+            case ("Open"):
+                {
+                    SQLServer_8_Connection.ConnectionString = SQLServer_1_StringBuilder;
+                    SQLServer_8_Connection.Open();
+                    return SQLServer_8_Connection;
+                }
+            case ("Close"):
+                {
+                    SQLServer_8_Connection.Close();
+                    SQLServer_8_Connection.ConnectionString = String.Empty;
+                    return SQLServer_8_Connection;
+                }
+            default :
+                {
+                    return SQLServer_8_Connection;
+                }
            }
        }
-       
+       ///
        #endregion
 
-   } /*FIM CLASS - ConnectionDataBase*/
-}/*FIM NAMESPACE - App_SQL_Conections*/
+   }  /*FIM CLASS - ConnectionDataBase*/
+}     /*FIM NAMESPACE - App_SQL_Conections*/
