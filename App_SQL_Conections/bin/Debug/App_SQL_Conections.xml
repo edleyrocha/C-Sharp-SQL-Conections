@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<!--EditorXML...: App_SQL_Conections.exe -->
+<SQLConnectionDataBase>
+  <DBConnection>
+    <IDType>SQLServerStringBuilder</IDType>
+    <DataSource>192.168.11.200</DataSource>
+    <InitialCatalog>master</InitialCatalog>
+    <IntegratedSecurity>true</IntegratedSecurity>
+    <User>sa</User>
+    <Password>a</Password>
+    <ConnectTimeout>30</ConnectTimeout>
+  </DBConnection>
+</SQLConnectionDataBase>

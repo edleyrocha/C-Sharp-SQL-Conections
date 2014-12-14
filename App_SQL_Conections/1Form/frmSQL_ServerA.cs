@@ -6,8 +6,6 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 
-
-
 namespace App_SQL_Conections
 {
     public partial class frmSQL_ServerA : Form
@@ -20,7 +18,7 @@ namespace App_SQL_Conections
         {
             InitializeComponent();
             FU1_Limpar_BOX();
-            FU2_BotaoAuthentication_ON_OFF();
+            //FU2_BotaoAuthentication_ON_OFF();
             FU3_AdicionarItens_comboBoxTimes();
         }
 
@@ -36,7 +34,7 @@ namespace App_SQL_Conections
             this.textBoxSever.Clear();
             this.textBoxUser.Clear();
             this.textBoxPassword.Clear();
-            this.comboBoxTime.Items.Clear();
+            this.comboBoxTimeOut.Items.Clear();
             this.richTextBox_Comentatatios.Clear();
         }
 
@@ -45,11 +43,7 @@ namespace App_SQL_Conections
         /// </summary>
         private void FU2_BotaoAuthentication_ON_OFF()
         {
-            /// ENABLE
-            comboBoxTime.Enabled =! comboBoxTime.Enabled;
-            labelTimeOut.Enabled =! labelTimeOut.Enabled;
             /// IF ON OFF
-            /// 
             if (btn__Authentication_ON_OFF.Text == ("OFF"))
             {
                 btn__Authentication_ON_OFF.Text = "ON";
@@ -67,9 +61,9 @@ namespace App_SQL_Conections
         {
             for (int i = 0; i <= 999; i++)
             {
-                comboBoxTime.Items.Add(Convert.ToString(i));
+                comboBoxTimeOut.Items.Add(Convert.ToString(i));
             }
-            comboBoxTime.Text = Convert.ToString(comboBoxTime.Items[30].ToString());
+            comboBoxTimeOut.Text = Convert.ToString(comboBoxTimeOut.Items[30].ToString());
         }
        
         /// <summary>
@@ -92,16 +86,56 @@ namespace App_SQL_Conections
         }
 
         /// <summary>
-        /// Disable Enable componentes
+        /// Disable Enable componentes (true-false)
         /// </summary>
-        private void FU5_EnableDisableComponentes()
-        {
-            labelUser.Enabled =! (labelUser.Enabled);
-            labelPassword.Enabled = !(labelPassword.Enabled);
-            textBoxUser.Enabled = !(textBoxUser.Enabled);
-            textBoxPassword.Enabled = !(textBoxPassword.Enabled);
-            btnShow.Enabled = !(btnShow.Enabled);
-         
+          private void FU5_EnableDisableComponentes(bool BoolLabelUser,       ///1
+                                                    bool BoolLabelPassword,   ///2
+                                                    bool BoolLextBoxUser,     ///3
+                                                    bool BoolTextBoxPassword, ///4
+                                                    bool BoolBtnShow,         ///5
+                                                    bool BoolBtnSalvar,       ///6
+                                                    bool BoolComboBoxTimeOut, ///7
+                                                    bool BoolLabelTimeOut)    ///8
+        {   
+            if (BoolLabelUser == true) 
+            {
+                labelUser.Enabled = !(labelUser.Enabled);
+            }
+
+            if (BoolLabelPassword == true)
+            {
+                labelPassword.Enabled = !(labelPassword.Enabled);
+            }
+
+            if (BoolLextBoxUser == true)
+            {
+                textBoxUser.Enabled = !(textBoxUser.Enabled);
+            }
+
+            if (BoolTextBoxPassword == true)
+            {
+                textBoxPassword.Enabled = !(textBoxPassword.Enabled);
+            }
+
+            if (BoolBtnShow == true)
+            {
+                btnShow.Enabled = !(btnShow.Enabled);
+            }
+
+            if (BoolBtnSalvar == true)
+            {
+                btnSalvar.Enabled = !(btnSalvar.Enabled);
+            }
+
+            if (BoolComboBoxTimeOut == true)
+            {
+                comboBoxTimeOut.Enabled = !comboBoxTimeOut.Enabled;
+            }
+
+            if (BoolLabelTimeOut == true)
+            {
+                labelTimeOut.Enabled = !labelTimeOut.Enabled;
+            }
         }
 
         /// <summary>
@@ -109,10 +143,11 @@ namespace App_SQL_Conections
         /// </summary>
         public void FU6_Montar_StringBuilder_SQLConnection()
         {
+
             ConnectionDataBase.SQLServer_1_StringBuilder = string.Empty;
             ConnectionDataBase.SQLServer_2_EnderecoServidor = textBoxSever.Text; ///1
             ConnectionDataBase.SQLServer_3_NomeBancoDeDados = textBoxBanco.Text; ///2
-
+            
             if (rb_Authentication_SQL_Server.Checked)
             {
                 ConnectionDataBase.SQLServer_4_TipoSeguranca = (false); ///3
@@ -124,9 +159,9 @@ namespace App_SQL_Conections
                 ConnectionDataBase.SQLServer_4_TipoSeguranca = (true); ///3
             }
 
-            if ((comboBoxTime.SelectedItem != null) && (comboBoxTime.Enabled != false))
+            if ((comboBoxTimeOut.SelectedItem != null) && (comboBoxTimeOut.Enabled != false))
             {
-                ConnectionDataBase.SQLServer_7_TimeOutConexao = (int.Parse(comboBoxTime.Text));///6
+                ConnectionDataBase.SQLServer_7_TimeOutConexao = (int.Parse(comboBoxTimeOut.Text));///6
             }
         }
 
@@ -142,16 +177,16 @@ namespace App_SQL_Conections
                 {
                     case ("Conectar"):
                         {
-       
                             ConnectionDataBase.SQLServer_FU_Connection("Open");
                             btnConectarDesconectar.Text = ("Desconectar");
+                            FU5_EnableDisableComponentes(!true, !true, !true, !true, !true, true, !true, !true);
                             break;
                         }
                     case ("Desconectar"):
                         {
-
                             ConnectionDataBase.SQLServer_FU_Connection("Close");
                             btnConectarDesconectar.Text = ("Conectar");
+                            FU5_EnableDisableComponentes(!true, !true, !true, !true, !true, true, !true, !true);
                             break;
                         }
                     default:
@@ -172,10 +207,21 @@ namespace App_SQL_Conections
         private void btn__Authentication_ON_OFF_Click(object sender, EventArgs e)
         {
             FU2_BotaoAuthentication_ON_OFF();
+            FU5_EnableDisableComponentes((!true /*BoolLabelUser*/       ),
+                                        (!true /*BoolLabelPassword*/    ),
+                                        (!true /*BoolLextBoxUser*/      ),
+                                        (!true /*BoolTextBoxPassword*/  ),
+                                        (!true /*BoolBtnShow*/          ),
+                                        (!true /*BoolBtnSalvar*/        ),
+                                        (true  /*BoolComboBoxTimeOut*/  ),
+                                        (true  /*BoolLabelTimeOut*/     ));
+            //FU5_EnableDisableComponentes(!true, !true, !true, !true, !true, !true, !true, !true);
         }
 
         private void buttonStatus_Click(object sender, EventArgs e)
         {
+
+            
             FU6_Montar_StringBuilder_SQLConnection();
             richTextBox_Comentatatios.Clear();
             richTextBox_Comentatatios.AppendText("StringBuilder ---> " + (ConnectionDataBase.SQLServer_1_StringBuilder) + ("\n"));
@@ -187,7 +233,14 @@ namespace App_SQL_Conections
 
         private void rb_Authentication_Windows_CheckedChanged(object sender, EventArgs e)
         {
-            FU5_EnableDisableComponentes();
+            FU5_EnableDisableComponentes((true  /*BoolLabelUser*/        ), 
+                                        ( true  /*BoolLabelPassword*/    ), 
+                                        ( true  /*BoolLextBoxUser*/      ), 
+                                        ( true  /*BoolTextBoxPassword*/  ), 
+                                        ( true  /*BoolBtnShow*/          ), 
+                                        ( !true /*BoolBtnSalvar*/        ), 
+                                        ( !true /*BoolComboBoxTimeOut*/  ), 
+                                        ( !true /*BoolLabelTimeOut*/     ));
         }
 
         private void btnShow_Click(object sender, EventArgs e)
@@ -201,5 +254,10 @@ namespace App_SQL_Conections
             FU7_ConectarDesconectar(btnConectarDesconectar.Text.ToString());
         }
 
+        private void btnSalvar_Click(object sender, EventArgs e)
+        {
+            ConnectionSaveFileXML AbrirSave = new ConnectionSaveFileXML();
+            AbrirSave.FU1_XML_Editor_CriarSalvar();
+        }
     }
 }

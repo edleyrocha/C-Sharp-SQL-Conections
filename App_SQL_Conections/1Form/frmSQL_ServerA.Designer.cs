@@ -42,7 +42,7 @@
             this.labelPassword = new System.Windows.Forms.Label();
             this.labelBanco = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.comboBoxTime = new System.Windows.Forms.ComboBox();
+            this.comboBoxTimeOut = new System.Windows.Forms.ComboBox();
             this.btnSalvar = new System.Windows.Forms.Button();
             this.btnConectarDesconectar = new System.Windows.Forms.Button();
             this.btn__Authentication_ON_OFF = new System.Windows.Forms.Button();
@@ -199,7 +199,7 @@
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.comboBoxTime);
+            this.panel1.Controls.Add(this.comboBoxTimeOut);
             this.panel1.Controls.Add(this.btnSalvar);
             this.panel1.Controls.Add(this.btnConectarDesconectar);
             this.panel1.Controls.Add(this.btn__Authentication_ON_OFF);
@@ -212,23 +212,25 @@
             this.panel1.Size = new System.Drawing.Size(292, 99);
             this.panel1.TabIndex = 2;
             // 
-            // comboBoxTime
+            // comboBoxTimeOut
             // 
-            this.comboBoxTime.FormattingEnabled = true;
-            this.comboBoxTime.Location = new System.Drawing.Point(91, 68);
-            this.comboBoxTime.Name = "comboBoxTime";
-            this.comboBoxTime.Size = new System.Drawing.Size(109, 21);
-            this.comboBoxTime.TabIndex = 10;
-            this.comboBoxTime.Text = "999";
+            this.comboBoxTimeOut.FormattingEnabled = true;
+            this.comboBoxTimeOut.Location = new System.Drawing.Point(91, 68);
+            this.comboBoxTimeOut.Name = "comboBoxTimeOut";
+            this.comboBoxTimeOut.Size = new System.Drawing.Size(109, 21);
+            this.comboBoxTimeOut.TabIndex = 10;
+            this.comboBoxTimeOut.Text = "999";
             // 
             // btnSalvar
             // 
+            this.btnSalvar.Enabled = false;
             this.btnSalvar.Location = new System.Drawing.Point(206, 66);
             this.btnSalvar.Name = "btnSalvar";
             this.btnSalvar.Size = new System.Drawing.Size(79, 23);
             this.btnSalvar.TabIndex = 9;
             this.btnSalvar.Text = "Salvar";
             this.btnSalvar.UseVisualStyleBackColor = true;
+            this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click);
             // 
             // btnConectarDesconectar
             // 
@@ -246,7 +248,7 @@
             this.btn__Authentication_ON_OFF.Name = "btn__Authentication_ON_OFF";
             this.btn__Authentication_ON_OFF.Size = new System.Drawing.Size(39, 50);
             this.btn__Authentication_ON_OFF.TabIndex = 7;
-            this.btn__Authentication_ON_OFF.Text = "OFF";
+            this.btn__Authentication_ON_OFF.Text = "ON";
             this.btn__Authentication_ON_OFF.UseVisualStyleBackColor = true;
             this.btn__Authentication_ON_OFF.Click += new System.EventHandler(this.btn__Authentication_ON_OFF_Click);
             // 
@@ -339,7 +341,7 @@
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button btn__Authentication_ON_OFF;
-        private System.Windows.Forms.ComboBox comboBoxTime;
+        private System.Windows.Forms.ComboBox comboBoxTimeOut;
         private System.Windows.Forms.Button btnShow;
     }
 }

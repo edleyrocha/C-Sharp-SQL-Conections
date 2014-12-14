@@ -128,13 +128,13 @@ namespace App_SQL_Conections
        #region ---(..........Lista de Funçoes..........)---
 
        /// <summary>
-       /// Funcao para Abrir Fechar e Outros
+       /// Funcao para Abrir Fechar e Outros para Renotar Conexao
        /// </summary>
        /// <param name="Open_Close_Status"></param>
        /// <returns></returns>
-       public static SqlConnection SQLServer_FU_Connection(String Open_Close_OUTROS)
+       public static SqlConnection SQLServer_FU_Connection(String Open_Close_Outros)
        {
-           switch (Open_Close_OUTROS)
+           switch (Open_Close_Outros)
            {
             case ("Open"):
                 {
@@ -145,7 +145,7 @@ namespace App_SQL_Conections
             case ("Close"):
                 {
                     SQLServer_8_Connection.Close();
-                    SQLServer_8_Connection.ConnectionString = String.Empty;
+                    SQLServer_8_Connection.Dispose();
                     return SQLServer_8_Connection;
                 }
             default :
@@ -157,5 +157,5 @@ namespace App_SQL_Conections
        ///
        #endregion
 
-   }  /*FIM CLASS - ConnectionDataBase*/
-}     /*FIM NAMESPACE - App_SQL_Conections*/
+   } 
+} 
