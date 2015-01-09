@@ -6,3 +6,4 @@ D:\Projetos\C-Sharp-SQL-Conections\App_SQL_Conections\obj\Debug\App_SQL_Conectio
 D:\Projetos\C-Sharp-SQL-Conections\App_SQL_Conections\obj\Debug\App_SQL_Conections.exe
 D:\Projetos\C-Sharp-SQL-Conections\App_SQL_Conections\obj\Debug\App_SQL_Conections.pdb
 D:\Projetos\C-Sharp-SQL-Conections\App_SQL_Conections\bin\Debug\App_SQL_Conections.exe.config
+D:\Projetos\C-Sharp-SQL-Conections\App_SQL_Conections\obj\Debug\App_SQL_Conections.csprojResolveAssemblyReference.cache
