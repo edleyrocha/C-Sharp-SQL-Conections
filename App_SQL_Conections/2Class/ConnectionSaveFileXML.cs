@@ -1,13 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
+
 
 #region ---(Using Adicionais)
 /// <summary>
 /// using
 /// </summary>
 using System.Windows.Forms;
-using System.Data;
 using System.Xml;
 using System.IO;
 

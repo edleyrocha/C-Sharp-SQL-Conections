@@ -7,3 +7,12 @@ D:\Projetos\C-Sharp-SQL-Conections\App_SQL_Conections\obj\Debug\App_SQL_Conectio
 D:\Projetos\C-Sharp-SQL-Conections\App_SQL_Conections\obj\Debug\App_SQL_Conections.pdb
 D:\Projetos\C-Sharp-SQL-Conections\App_SQL_Conections\bin\Debug\App_SQL_Conections.exe.config
 D:\Projetos\C-Sharp-SQL-Conections\App_SQL_Conections\obj\Debug\App_SQL_Conections.csprojResolveAssemblyReference.cache
+C:\Users\herry\Documents\GitHub\C-Sharp-SQL-Conections2014\App_SQL_Conections\bin\Debug\App_SQL_Conections.exe.config
+C:\Users\herry\Documents\GitHub\C-Sharp-SQL-Conections2014\App_SQL_Conections\obj\Debug\App_SQL_Conections.exe
+C:\Users\herry\Documents\GitHub\C-Sharp-SQL-Conections2014\App_SQL_Conections\obj\Debug\App_SQL_Conections.pdb
+C:\Users\herry\Documents\GitHub\C-Sharp-SQL-Conections2014\App_SQL_Conections\bin\Debug\App_SQL_Conections.exe
+C:\Users\herry\Documents\GitHub\C-Sharp-SQL-Conections2014\App_SQL_Conections\bin\Debug\App_SQL_Conections.pdb
+C:\Users\herry\Documents\GitHub\C-Sharp-SQL-Conections2014\App_SQL_Conections\obj\Debug\App_SQL_Conections.csprojResolveAssemblyReference.cache
+C:\Users\herry\Documents\GitHub\C-Sharp-SQL-Conections2014\App_SQL_Conections\obj\Debug\App_SQL_Conections.frmSQL_ServerA.resources
+C:\Users\herry\Documents\GitHub\C-Sharp-SQL-Conections2014\App_SQL_Conections\obj\Debug\App_SQL_Conections.Properties.Resources.resources
+C:\Users\herry\Documents\GitHub\C-Sharp-SQL-Conections2014\App_SQL_Conections\obj\Debug\App_SQL_Conections.csproj.GenerateResource.Cache
